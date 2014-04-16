@@ -11,12 +11,16 @@ class Person
 		!@bike.nil?
 	end
 
-	def rent_bike_from(station)
-		@bike = station.release
+	def rent_bike_from(bike, station)
+		@bike = bike 
+		station.release(bike)
 	end
 
 	def return_bike_to(station)
 		@bike = station.dock
 		@bike = nil
+	end
+	def bike
+		@bike
 	end
 end

@@ -7,9 +7,9 @@ describe Station do
 	let(:bike) { Bike.new }
 
 	it 'rents out a bike' do
-		station.bikes << bike
-		user.rent_bike_from(station)
-		expect(station.rent).to eq :bike
+		station.dock(bike)
+		user.rent_bike_from(bike, station)
+		expect(station.bikes).to eq []
 	end
 
 end

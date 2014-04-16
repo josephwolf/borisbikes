@@ -1,23 +1,26 @@
 require 'userclass.rb'
+require 'dockclass'
+require 'bikeclass'
 
 describe Person do
 
 	let(:person) { Person.new }
 	let(:bike) { Bike.new }
+	let(:station) { Station.new }
 
 	it 'has no bike' do
 		expect(person).not_to have_bike
 	end
 
 	it 'can rent a bike from a docking station' do
-		station = double :station
+		# station = double :station
 		expect(station).to receive(:release)
-		person.rent_bike_from(station)
+		person.rent_bike_from(bike, station)
 	end
 
 	it "has a bike after renting one" do
-		station = double(:station, {release: :bike})
-		person.rent_bike_from(station)
+		station.dock(bike)
+		person.rent_bike_from(bike, station)
 		expect(person).to have_bike
 	end
 

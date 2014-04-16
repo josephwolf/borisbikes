@@ -8,8 +8,10 @@ class Station
     @capacity = options.fetch(:capacity, capacity)
   end
 
-  def rent(user)
-  	Bike.new if user.rent_bike_from
+  def give_bike_to(user)
+  	raise "Who am I giving a bike to?" if user == nil
+  	user.bike << self.bikes[0]
+  	user.rent_bike_from(self)
   end 
 
 end
