@@ -2,13 +2,13 @@ require 'dockclass.rb'
 
 describe Station do
 
-	#it behaves like a bike container
-
-	xit 'can hold bikes' do
-	end
+	let(:user) { Person.new }
+	let(:station) { Station.new }
+	let(:bike) { Bike.new }
 
 	it 'rents out a bike' do
-		station = Station.new([:bike])
+		station.bikes << bike
+		user.rent_bike_from(station)
 		expect(station.rent).to eq :bike
 	end
 

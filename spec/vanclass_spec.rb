@@ -1,19 +1,22 @@
 require 'vanclass.rb'
 
-
 describe Van do 
-	it 'has bikes' do
-		van = Van.new([:bike])
-		expect(van.to have_bikes
+
+	let(:bike) { Bike.new}
+	let(:van) { Van.new(capacity: 5) }
+	let(:station) { Station.new(capacity: 20) }
+	let(:garage) { Garage.new(capacity: 30) }
+
+  	it 'has bikes' do
+		van.dock(bike)
+		expect(van).to have_bikes
+	end
+
+	it "should collect broken bikes from a station" do
+    	bike.break!
+    	station.dock(bike)
+    	van.collect_broken_bikes(station)
+    	expect(van.broken_bikes).to_not be 0
 	end
 	
-	# it 'has no bikes' do
-	# 	expect(Van.new).not_to have_bikes
-	# end
-	
-	# it 'has broken bikes' do
-	# 	bike = double :bike, broken?: true
-	# 	van = Van.new([bike])
-	# 	expect van.broken_bikes.to eq [bike]
-	# end
 end

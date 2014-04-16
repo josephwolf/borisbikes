@@ -3,7 +3,7 @@ require 'userclass.rb'
 describe Person do
 
 	let(:person) { Person.new }
-	let(:bike) { double :bike }
+	let(:bike) { Bike.new }
 
 	it 'has no bike' do
 		expect(person).not_to have_bike
@@ -11,12 +11,12 @@ describe Person do
 
 	it 'can rent a bike from a docking station' do
 		station = double :station
-		expect(station).to receive(:release_bike)
+		expect(station).to receive(:release)
 		person.rent_bike_from(station)
 	end
 
 	it "has a bike after renting one" do
-		station = double(:station, {release_bike: :bike})
+		station = double(:station, {release: :bike})
 		person.rent_bike_from(station)
 		expect(person).to have_bike
 	end
@@ -30,12 +30,12 @@ describe Person do
 	it "can return a bike to the docking station" do
 		station = double :station
 		person = Person.new(bike)
-		expect(station).to receive(:recieve_bike)
+		expect(station).to receive(:dock)
 		person.return_bike_to(station)
 	end
 
 	it "does not have bike after docking one" do
-		station = double(:station, {recieve_bike: :bike})
+		station = double(:station, {dock: :bike})
 		person.return_bike_to(station)
 		expect(person).not_to have_bike
 	end
