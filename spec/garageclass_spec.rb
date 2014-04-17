@@ -7,5 +7,5 @@ describe Garage do
 	let(:van) { Van.new(capacity: 5) }
 	let(:station) { Station.new(capacity: 20) }
 	let(:garage) { Garage.new(capacity: 30) }
-
+	
 end

@@ -8,9 +8,11 @@ describe Station do
 	let(:station) { Station.new(capacity: 20) }
 	let(:garage) { Garage.new(capacity: 30) }
 
+	# it_behaves_like BikeContainer
+
 	it 'rents out a bike' do
 		station.dock(bike)
-		user.rent_bike_from(bike, station)
+		person.rent_bike_from(station)
 		expect(station.bikes).to eq []
 	end
 

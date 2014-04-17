@@ -12,7 +12,7 @@ class Person
 	end
 
 	def rent_bike_from(station)
-		raise "I already have a bike!" if @bike == !nil
+		raise puts "I already have a bike!" if @bike == !nil
 		@bike = station.available_bikes.pop
 		station.release(bike)
 	end

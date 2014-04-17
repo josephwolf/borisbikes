@@ -15,34 +15,40 @@ describe Person do
 	end
 
 	it 'can rent a bike from a docking station' do
-		# station = double :station
-		expect(station).to receive(:release)
-		person.rent_bike_from(bike, station)
+		person.rent_bike_from(station)
+		expect(station.bikes).to eq []
 	end
 
 	it "has a bike after renting one" do
 		station.dock(bike)
-		person.rent_bike_from(bike, station)
+		person.rent_bike_from(station)
 		expect(person).to have_bike
 	end
 
 	it "can break a bike" do
 		person = Person.new(bike)
-		expect(bike).to receive(:break!)
 		person.crash!
+		expect(bike.broken?).to eq true
 	end
 
 	it "can return a bike to the docking station" do
-		station = double :station
 		person = Person.new(bike)
-		expect(station).to receive(:dock)
 		person.return_bike_to(station)
+		expect(station.has_bikes?).to eq true
 	end
 
 	it "does not have bike after docking one" do
-		station = double(:station, {dock: :bike})
 		person.return_bike_to(station)
 		expect(person).not_to have_bike
+	end
+
+	xit "cannot have more than one bike" do
+		bike2 = Bike.new
+		bike3 = Bike.new
+		person = Person.new(bike3)
+		station.dock(bike2)
+		person.rent_bike_from(station)
+		expect(person.bike).to eq bike3
 	end
 
 end

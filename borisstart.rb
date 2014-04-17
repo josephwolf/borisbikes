@@ -10,3 +10,8 @@ bike = Bike.new
 van = Van.new(capacity: 5)
 station = Station.new(capacity: 20)
 garage = Garage.new(capacity: 30) 
+station.dock(bike)
+person.rent_bike_from(station)
+person.crash!
+person.return_bike_to(station)
+van.collect_broken_from(station)

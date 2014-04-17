@@ -11,31 +11,24 @@ class Van
 		@capacity = options.fetch(:capacity, capacity)
 	end
 
-	def collect_bikes_from(station)
-		move_bikes(station, self, station.available_bikes)
+	def collect_broken_from(place)
+		move_bikes(place, self, place.broken_bikes)
 	end
 
-	def collect_broken_from(station)
-		move_bikes(station, self, station.broken_bikes)
+	def give_broken_to(place)
+		move_bikes(self, place, broken_bikes)
 	end
 
-	def give_broken_to(garage)
-		move_bikes(self, garage, broken_bikes)
+	def give_fixed_to(place)
+		move_bikes(self, place, available_bikes)
 	end
 
-	def give_fixed_to(garage)
-		move_bikes(self, garage, available_bikes)
+	def collect_fixed_from(place)
+		move_bikes(place, self, place.available_bikes)
+	end
+	
+	def give_all_to(place)
+		move_bikes(self, place, (broken_bikes + available_bikes))
 	end
 
-	def give_all_to(garage)
-		move_bikes(self, garage, (broken_bikes + available_bikes))
-	end
-
-	def collect_fixed_from(garage)
-		move_bikes(garage, self, garage.available_bikes)
-	end
-
-	def give_fixed_to(station)
-		move_bikes(self, station, available_bikes)
-	end
 end
