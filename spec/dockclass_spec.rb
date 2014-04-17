@@ -1,6 +1,9 @@
 require 'dockclass.rb'
+require 'bike_container.rb'
 
 describe Station do
+
+	include BikeContainer
 
 	let(:person) { Person.new }
 	let(:bike) { Bike.new}
@@ -8,7 +11,9 @@ describe Station do
 	let(:station) { Station.new(capacity: 20) }
 	let(:garage) { Garage.new(capacity: 30) }
 
-	# it_behaves_like BikeContainer
+	shared_examples BikeContainer do
+		let(:container) { described_class.new }
+	end
 
 	it 'rents out a bike' do
 		station.dock(bike)

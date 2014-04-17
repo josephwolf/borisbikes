@@ -8,13 +8,8 @@ describe Van do
 	let(:station) { Station.new(capacity: 20) }
 	let(:garage) { Garage.new(capacity: 30) }
 
-	it 'starts off empty' do
-		expect(van).to_not have_bikes
-	end
-
-  	it 'has bikes' do
-		van.dock(bike)
-		expect(van).to have_bikes
+	shared_examples BikeContainer do
+		let(:container) { described_class.new }
 	end
 
 	it "should collect broken bikes from a station" do

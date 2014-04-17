@@ -15,3 +15,7 @@ person.rent_bike_from(station)
 person.crash!
 person.return_bike_to(station)
 van.collect_broken_from(station)
+van.give_broken_to(garage)
+garage.fix_broken_bikes
+van.collect_fixed_from(garage)
+van.give_fixed_to(garage)

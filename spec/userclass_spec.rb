@@ -42,13 +42,13 @@ describe Person do
 		expect(person).not_to have_bike
 	end
 
-	xit "cannot have more than one bike" do
+	it "cannot have more than one bike" do
 		bike2 = Bike.new
 		bike3 = Bike.new
 		person = Person.new(bike3)
 		station.dock(bike2)
 		person.rent_bike_from(station)
-		expect(person.bike).to eq bike3
+		expect(person.bike.object_id).to eq bike3.object_id
 	end
 
 end
