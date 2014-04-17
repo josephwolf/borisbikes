@@ -43,26 +43,11 @@ module BikeContainer
     bikes.any?
   end
 
-def move_bikes (origin, destination, bike_type)
-  bike_type.each do |bike|
-    destination.dock(bike)
-    origin.release(bike)
+  def move_bikes (origin, destination, bike_type)
+    bike_type.each do |bike|
+      destination.dock(bike)
+     origin.release(bike)
+   end
   end
-end
-
-
-
-# def drop_broken_bikes_into (place)
-#   broken_bikes.each do |bike|
-#   place.dock(release(bike))
-#   end
-# end
-
-# def collects_broken_bikes_from (place)
-#   place.broken_bikes.each do |bike|
-#   dock(bike)
-#   place.release(bike)
-# end
-# end
 
 end

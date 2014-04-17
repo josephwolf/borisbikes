@@ -5,8 +5,10 @@ require 'bikeclass'
 describe Person do
 
 	let(:person) { Person.new }
-	let(:bike) { Bike.new }
-	let(:station) { Station.new }
+	let(:bike) { Bike.new}
+	let(:van) { Van.new(capacity: 5) }
+	let(:station) { Station.new(capacity: 20) }
+	let(:garage) { Garage.new(capacity: 30) }
 
 	it 'has no bike' do
 		expect(person).not_to have_bike

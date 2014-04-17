@@ -1,7 +1,12 @@
 require 'bikeclass.rb'
 
 describe Bike do
-	let(:bike) { Bike.new }
+
+	let(:person) { Person.new }
+	let(:bike) { Bike.new}
+	let(:van) { Van.new(capacity: 5) }
+	let(:station) { Station.new(capacity: 20) }
+	let(:garage) { Garage.new(capacity: 30) }
 
 	it "starts off not broken" do
 		expect(bike).to_not be_broken
