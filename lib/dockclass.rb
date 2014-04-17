@@ -4,14 +4,16 @@ class Station
 
 	include BikeContainer
 
-  def initialize(options = {})
-    @capacity = options.fetch(:capacity, capacity)
-  end
+	def initialize(options = {})
+	  @capacity = options.fetch(:capacity, capacity)
+	end
+	
+	# def give_broken_to(van)
+	# 	move_bikes(self, van, broken_bikes)
+	# end
 
-  def give_bike_to(user)
-  	raise "Who am I giving a bike to?" if user == nil
-  	user.bike << self.bikes[0]
-  	user.rent_bike_from(self)
-  end 
+	# def collect_fixed_from(van)
+	# 	move_bikes(van, self, fixed_bikes)
+	# end
 
 end

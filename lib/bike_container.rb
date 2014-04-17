@@ -6,6 +6,14 @@ module BikeContainer
     @bikes ||= []
   end
 
+  def available_bikes
+    bikes.reject { |bike| bike.broken? }
+  end
+
+  def broken_bikes
+    bikes.select { |bike| bike.broken? }
+  end
+
   def capacity
     @capacity ||= DEFAULT_CAPACITY
   end
@@ -19,7 +27,7 @@ module BikeContainer
   end
 
   def dock(bike)
-    raise "Station is full" if full?
+    raise "No room!" if full?
     bikes << bike
   end
 
@@ -31,12 +39,30 @@ module BikeContainer
     bike_count == capacity
   end
 
-  def available_bikes
-    bikes.reject { |bike| bike.broken?}
+  def has_bikes?
+    bikes.any?
   end
 
-  def has_bikes?
-    bike_count >= 1
+def move_bikes (origin, destination, bike_type)
+  bike_type.each do |bike|
+    destination.dock(bike)
+    origin.release(bike)
   end
+end
+
+
+
+# def drop_broken_bikes_into (place)
+#   broken_bikes.each do |bike|
+#   place.dock(release(bike))
+#   end
+# end
+
+# def collects_broken_bikes_from (place)
+#   place.broken_bikes.each do |bike|
+#   dock(bike)
+#   place.release(bike)
+# end
+# end
 
 end
